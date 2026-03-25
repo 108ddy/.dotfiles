@@ -1,0 +1,271 @@
+// TODO: rewrite it later
+{
+    "layer": "top",
+    "position": "top",
+    "reload_style_on_change": true,
+
+
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "hyprland/window"
+    ],
+
+    "modules-center": [
+        // maybe add net spd
+        "clock",
+        "privacy"
+    ],
+
+    "modules-right": [
+        "memory",
+        "disk",
+        "temperature",
+        "custom/separator",
+        "backlight",
+        "network",
+        "bluetooth",
+        "pulseaudio",
+        "battery",
+        "custom/separator",
+        // "custom/inhibit-suspend",
+        "custom/notification",
+        "tray",
+        "custom/power"
+    ],
+
+
+    "custom/separator": {
+        "format": "|",
+        "tooltip": false
+    },
+
+    "custom/launcher": {
+        "format": "󰣇",
+        "tooltip-format": "App Launcher\n\nLMB: Control Center\nRMB: Application Launcher",
+        "on-click-right": "rofi -show drun"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "0",
+            "special": "󰠱",
+            "default": "",
+        },
+        "on-click": "activate",
+        "sort-by-number": true,
+        "all-outputs": true,
+        "show-special": true,
+        "special-visible-only": false,
+        "persistent-workspaces": { "*": 10 },
+        "on-scroll-up": "hyperland dispatch workspace e-1",
+        "on-scroll-down": "hyperland dispatch workspace e+1"
+    },
+
+    "hyperland/submap": {
+        "format": "󱊁 {}",
+        "max-length": 12,
+        "tooltip": false,
+    },
+
+    "hyprland/window": {
+        "format": "{title}",
+        "max-length": 40,
+        "separate-outputs": true,
+        "icon": true,
+        "icon-size": 14,
+        "rewrite": { "": "" }
+    },
+
+    "clock": {
+        "format": " {:%d %h, %H:%M}",
+        "format-alt": "{:%A, %d %B %Y • %H:%M:%S}",
+        "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+        "interval": 1,
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
+    },
+
+    "privacy": {
+        "icon-spacing": 2,
+        "icon-size": 16,
+        "transition-duration": 250,
+        "modules": [
+            { "type": "screenshare", "tooltip": true, "tooltip-icon-size": 14 },
+            { "type": "audio-in",    "tooltip": true, "tooltip-icon-size": 14 },
+            { "type": "audio-out",   "tooltip": true, "tooltip-icon-size": 14 }
+        ]
+    },
+
+    "memory": {
+        "format": "󰍛 {percentage}%",
+        "format-alt": "󰍛 {used:0.1f}G",
+        "interval": 3,
+        "tooltip-format": "RAM: {used:0.2f} GiB / {total:0.2f} GiB ({percentage}%)\nAvailable: {avail:0.2f} GiB\nSwap: {swapUsed:0.2f} GiB / {swapTotal:0.2f} GiB\n\nRMB: I/O Monitor",
+        "states": {
+            "warning": 70,
+            "critical": 85
+        }
+    },
+
+    "disk": {
+        "format": "󰋊 {percentage_used}%",
+        "format-alt": "󰋊 {used}/{total}",
+        "path": "/",
+        "interval": 60,
+        "tooltip-format": "Disk Usage: {used}/{total} ({percentage_used}%)\nFree: {free}\nPath: {path}\n\nLMB: Toggle Format\nRMB: File Manager",
+        "states": {
+            "warning": 75,
+            "critical": 90
+        },
+        "on-click-right": "dolphin"
+    },
+
+    "temperature": {
+        "thermal-zone": 6,
+        "format": "{icon} {temperatureC}°",
+        "format-icons": ["󱃃", "󰔏", "󱃂"],
+        "critical-threshold": 75,
+        "format-critical": "󰸁 {temperatureC}°",
+        "tooltip-format": "CPU Package: {temperatureC}°C / {temperatureF}°F\nThermal Zone: 6",
+        "interval": 3
+    },
+
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "tooltip-format": "Brightness: {percent}%\n\nLMB: Brightness Slider\nRMB: Hyprsunset Slider\nMMB: Shader Menu\nScroll: Adjust",
+        "interval": 60
+    },
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "{icon} {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰈀 No IP",
+        "format-disconnected": "󰤭",
+        "format-disabled": "󰀝",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "tooltip-format-wifi": " {essid}\n\nSignal: {signalStrength}% ({signaldBm} dBm)\nFrequency: {frequency} MHz\nInterface: {ifname}\nIP: {ipaddr}/{cidr}\n\n󰕒 {bandwidthUpBytes}  󰇚 {bandwidthDownBytes}\n\nLMB: wifitui\nRMB: WiFi ON\nMMB: WiFi OFF",
+        "tooltip-format-ethernet": "󰈀 Wired Connected\n\nInterface: {ifname}\nIP: {ipaddr}/{cidr}\nGateway: {gwaddr}\n\n(Speed shown in center meter)",
+        "tooltip-format-disconnected": "No connection\n\nRMB: Turn WiFi ON",
+        "interval": 2,
+    },
+
+    "bluetooth": {
+        "format": "󰂯",
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱 {num_connections}",
+        "format-connected-battery": "󰂱 {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\n{controller_address}\n\nLMB: Blueman\nRMB: Bluetui",
+        "tooltip-format-off": "Bluetooth OFF\n\nLMB: Blueman\nRMB: Bluetui",
+        "tooltip-format-connected": "{controller_alias}\n{controller_address}\n\n{device_enumerate}\n\nLMB: Blueman\nRMB: Bluetui",
+        "tooltip-format-enumerate-connected": " {device_alias}",
+        "tooltip-format-enumerate-connected-battery": " {device_alias} ({device_battery_percentage}%)",
+        "interval": 5
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰖁",
+        "format-bluetooth": "󰂰 {volume}%",
+        "format-bluetooth-muted": "󰂲",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰋎",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "tooltip-format": "{desc}\nVolume: {volume}%\n\nLMB: Pavucontrol\nRMB: Cava\nMMB: Mute Toggle\nScroll: Volume",
+        "scroll-step": 5,
+        "max-volume": 150
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-alt": "{icon} {capacity}% {power:.1f}W",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-full": "󱟢",
+        "format-warning": "{icon} {capacity}%",
+        "format-critical": "󰂃 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "interval": 5,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "tooltip-format": "{timeTo}\nHealth: {health}%\nPower Draw: {power:.2f} W\nCycles: {cycles}\n\nLMB: Toggle Format\nRMB: Timeout Settings",
+    },
+
+    "custom/inhibit-suspend": {
+        "format": "{}",
+        "return-type": "json",
+        "interval": 5,
+        "signal": 9,
+        "escape": true
+    },
+
+    "custom/notification": {
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂚",
+            "dnd-notification": "󱏧",
+            "dnd-none": "󰂛",
+            "inhibited-notification": "󱅫",
+            "inhibited-none": "󰂚",
+            "dnd-inhibited-notification": "󱏧",
+            "dnd-inhibited-none": "󰂛"
+        },
+        "return-type": "json",
+        "escape": true,
+        "tooltip-format": "Notifications\n\nLMB: Toggle Panel\nRMB: Do Not Disturb"
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 4,
+        "show-passive-items": false
+    },
+
+    "custom/power": {
+        "format": "⏻",
+        "tooltip-format": "Power Menu\n\nLMB: Wlogout\nRMB: Lock Screen",
+        // "on-click-right": "hyprlock"
+    }
+}
+

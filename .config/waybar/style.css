@@ -1,0 +1,62 @@
+@define-color color2 #391321;
+@define-color color1 #150919;
+@define-color color3 #23101e;
+@define-color color4 #922a29;
+
+* {
+    all: unset;
+    font-family: "JetBrains Mono Nerd Font Propo";
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* All entities in the waybar */
+box.horizontal { background-color: transparent; }
+
+/* Specific 3 boxes called modules-* */
+box.horizontal.modules-left,
+box.horizontal.modules-center,
+box.horizontal.modules-right { background-color: @color3; }
+box.horizontal.modules-left { border-radius: 0 15px 15px 0; }
+box.horizontal.modules-center { border-radius: 15px 0; }
+box.horizontal.modules-right { border-radius: 15px 0 0 15px; }
+
+widget label:not(#custom-separator) { padding: 0 15px; }
+/* widget box.horizontal.module { border: solid 1px white; } */
+
+.modules-left label#custom-launcher { font-size: 15px; }
+.modules-left box#workspaces.horizontal button {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-right: solid 1px @color1;
+    transition: background-color .2s ease;
+}
+.modules-left box#workspaces.horizontal button.active,
+.modules-left box#workspaces.horizontal button:hover { background-color: @color4; }
+.modules-left box#workspaces.horizontal button:hover { transition:background-color .2s ease; }
+.modules-left box#workspaces.horizontal button:first-child { border-left: solid 1px @color1; }
+.modules-left box#window.horizontal image { padding-left: 10px; }
+.modules-left box#window.horizontal > image + label {
+    /* TODO: check later how to fix this wierd ass space between image and label */
+    margin-left: -8px;
+}
+.modules-left box#window.horizontal label { padding: 0 15px; }
+
+.modules-center widget > box#privacy { margin: 0; padding-right: 15px; }
+.modules-center revealer > box#privacy-item { padding: 0; margin: 0; }
+.modules-center box#privacy-item image { padding: 0 5px; }
+
+.modules-right box#tray image { padding: 0 10px; }
+
+/* TODO: Remove when all will be !!DONE */
+/* All widget have their label module */
+/* widget label.module { background-color: blue; } */
+/* But widget can also have their box module */
+/* widget box.horizontal.module { background-color: darkorange; } */
+/* Some of boxes don't have modules. instead horizontal item... */
+/* widget box.horizontal { background-color: darkgray; } */
+/* apparently #tray active or image */
+/* widget image { background-color: red; padding: 0 } */
+/* widget box#window.horizontal label{ background-color: red; padding: 0; } */
+/* widget #tray image { background-color: red; padding: 0 10px; } */
+

@@ -52,9 +52,9 @@ bindkey "^k" forward-char
 bindkey "^j" backward-char
 
 bindkey "^d^d" kill-whole-line
-bindkey "^d^w" delete-word
-bindkey "^d^b" backward-delete-word
-bindkey "^x" delete-char
+bindkey "^d^w" kill-word
+bindkey "^d^b" backward-kill-word
+bindkey "^x" kill-char
 
 bindkey "^u" undo
 
@@ -69,6 +69,7 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 bindkey "^[[2~" overwrite-mode
+bindkey "^H" backward-kill-word
 bindkey "^[[3~" delete-char
 
 bindkey "^[[5~" history-beginning-search-backward
