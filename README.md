@@ -39,8 +39,8 @@
 
 
 ### Drivers
-* Nvidia-Intel (hybrind-intel-nvidia)
-* dkms, mesa, nvidia-open-dkms, nvidia-prime, nvidia-utils, nvidia-settings etc
+* nvidia-open, nvidia-utils, nvidia-settings, nvidia-prime
+* mesa, xorg-server, vulkan-intel, intel-media-driver, glxinfo32
 
 
 ### Browsers 
